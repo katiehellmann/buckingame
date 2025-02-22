@@ -12,6 +12,11 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public int currentScore;
     [SerializeField] int scorePerNote = 100;
+    [SerializeField] int scorePerGoodNote = 125;
+    [SerializeField] int scorePerPerfectNote = 150;
+
+
+
     public int currentMultiplier;
     public int multiplerTracker;
     public int[] multiplierThresholds;
@@ -55,10 +60,27 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        currentScore += scorePerNote *currentMultiplier;
+        //currentScore += scorePerNote *currentMultiplier;
         scoreTMP.text = "Score: " + currentScore;
         multiplierTMP.text = "Multiplier: " + currentMultiplier + "x";
 
+    }
+
+    public void NormalHit()
+    {
+        currentScore += scorePerNote;
+        NoteHit();
+    }
+    public void GoodHit()
+    {
+        currentScore += scorePerGoodNote;
+        NoteHit();
+    }
+
+    public void PerfectHit()
+    {
+        currentScore += scorePerPerfectNote;
+        NoteHit();
     }
 
     public void NoteMiss()
