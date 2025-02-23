@@ -1556,6 +1556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelOne: Gameplay
   creditsScreen: {fileID: 64200692}
+  startScreen: StartScreen
 --- !u!1 &1048647889
 GameObject:
   m_ObjectHideFlags: 0
