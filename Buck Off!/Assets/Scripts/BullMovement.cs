@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditorInternal.ReorderableList;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class BullMovement : MonoBehaviour
 {
@@ -32,11 +30,11 @@ public class BullMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            transform.Rotate(Vector3.forward * -90);
+            transform.Rotate(Vector3.forward * -20);
         }
         else if (Input.GetKeyUp(KeyCode.A))
         {
-            transform.Rotate(0,0,0);
+            transform.Rotate(Vector3.back * -20);
         }
     }
 
@@ -44,24 +42,39 @@ public class BullMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.D))
         {
-            transform.Rotate(Vector3.back * -90);
+            transform.Rotate(Vector3.back * -20);
         }
         else if (Input.GetKeyUp(KeyCode.D))
         {
-            transform.Rotate(0, 0, 0);
+            transform.Rotate(Vector3.forward * -20);
         }
 
     }
 
     void Up()
     {
-        transform.position = defaultPos;
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            transform.position += new Vector3(0f, .5f);
+        }
+        else if (Input.GetKeyUp(KeyCode.W))
+        {
+            transform.position = defaultPos;
+        }
+        
     }
 
 
     void Down()
     {
-        transform.position = defaultPos;
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            transform.position += new Vector3(0f, -.5f);
+        }
+        else if (Input.GetKeyUp(KeyCode.S))
+        {
+            transform.position = defaultPos;
+        }
 
     }
 }
