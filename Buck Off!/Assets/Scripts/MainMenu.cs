@@ -5,46 +5,36 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-
     public string levelOne;
+    public GameObject creditsScreen;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    //start func
+    // Start game with delay
     public void StartGame()
     {
+        StartCoroutine(LoadLevelWithDelay());
+    }
+
+    private IEnumerator LoadLevelWithDelay()
+    {
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(levelOne);
     }
 
-
-    //open credits func
+    // Open credits function
     public void OpenCredits()
     {
-
+        creditsScreen.SetActive(true);
     }
 
-
-    //close credits function
+    // Close credits function
     public void CloseCredits()
     {
-
+        creditsScreen.SetActive(false);
     }
 
-
-    //quit game func
+    // Quit game function
     public void QuitGame()
     {
         Application.Quit();
     }
-
 }
