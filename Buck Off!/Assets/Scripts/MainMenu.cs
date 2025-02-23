@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
     public string levelOne;
     public GameObject creditsScreen;
 
-    // Start game with delay
+    //delaaayyyyy
     public void StartGame()
     {
         StartCoroutine(LoadLevelWithDelay());
@@ -16,23 +16,24 @@ public class MainMenu : MonoBehaviour
 
     private IEnumerator LoadLevelWithDelay()
     {
-        yield return new WaitForSeconds(1f);
+        //1.5 second buffer
+        yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(levelOne);
     }
 
-    // Open credits function
+    //open creds
     public void OpenCredits()
     {
         creditsScreen.SetActive(true);
     }
 
-    // Close credits function
+    //close creds
     public void CloseCredits()
     {
         creditsScreen.SetActive(false);
     }
 
-    // Quit game function
+    //quit
     public void QuitGame()
     {
         Application.Quit();
