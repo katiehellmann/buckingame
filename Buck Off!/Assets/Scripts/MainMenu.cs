@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
@@ -23,7 +23,7 @@ public class MainMenu : MonoBehaviour
     //start func
     public void StartGame()
     {
-
+        SceneManager.LoadScene(levelOne);
     }
 
 
@@ -44,7 +44,7 @@ public class MainMenu : MonoBehaviour
     //quit game func
     public void QuitGame()
     {
-
+        Application.Quit();
     }
 
 }
