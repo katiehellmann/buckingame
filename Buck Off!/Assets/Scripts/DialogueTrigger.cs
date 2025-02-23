@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
+    //https://www.youtube.com/watch?v=DOP_G5bsySA
+    //script that will trigger the dialogue to start displaying
+
     public Dialogue dialogue;
 
     public void TriggerDialogue()
