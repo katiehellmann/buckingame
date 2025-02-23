@@ -9,6 +9,8 @@ public class MainMenu : MonoBehaviour
     public GameObject creditsScreen;
     public string startScreen;
     public string instructionsScreen;
+    public string failScreen;
+
 
     //delaaayyyyy
     public void StartGame()
@@ -52,5 +54,9 @@ public class MainMenu : MonoBehaviour
     public void OpenInstructions()
     {
         SceneManager.LoadScene(instructionsScreen);
+    }
+    public void GameOverScene()
+    {
+        SceneManager.LoadScene(failScreen);
     }
 }

@@ -8,8 +8,11 @@ public class GameManager : MonoBehaviour
 {
     public AudioSource music;
     public bool startPlaying;
-    public BeatScroller _beatScroller;
+    public BullMovement bull;
     public bool hasRider;
+
+    [SerializeField] MainMenu sceneManager;
+
     public static GameManager instance;
     public int currentScore;
     [SerializeField] int scorePerNote = 100;
@@ -29,13 +32,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject startBG;
 
     [SerializeField] GameObject musicLine;
+    [SerializeField] BeatScroller _beatScroller;
+
 
     [SerializeField] GameObject[] allNotes;
 
     // Start is called before the first frame update
     void Start()
     {
-        hasRider = true;
+        hasRider = false;
         currentScore = 0;
         currentMultiplier = 1;
         instance = this;
@@ -48,10 +53,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //make the music play
-        if (!startPlaying) { 
-        if (Input.anyKeyDown)
+        if (!startPlaying)
+        {
+            if (Input.anyKeyDown)
             {
                 startPlaying = true;
+                hasRider = true;
                 Destroy(startTMP);
                 Destroy(startBG);
                 _beatScroller.hasStarted = true;
@@ -60,12 +67,22 @@ public class GameManager : MonoBehaviour
                 music.Play();
             }
         }
+
+        if (!music.isPlaying && hasRider)
+        {
+            //change the gaurds
+            hasRider = false;
+            Delay();
+            music.Play();
+        }
         spawnMoreNotes();
+        GameOver();
     }
     //a note helper method
     public void NoteHit()
     {
         multiplerTracker++;
+        missedNotes = 0;
         if (currentMultiplier - 1 < multiplierThresholds.Length)
         {
             multiplerTracker++;
@@ -112,17 +129,20 @@ public class GameManager : MonoBehaviour
     {
         bool isPlaying = false;
         //Debug.Log(musicLine.gameObject.transform.position.x);
-        foreach (GameObject note in allNotes) {
+        foreach (GameObject note in allNotes)
+        {
             if (note.activeSelf)
             {
                 isPlaying = true;
             }
         }
-        if (!isPlaying) {
+        if (!isPlaying)
+        {
             Debug.Log("respawned notes");
             //Vector3 temp = new Vector3(musicLine.gameObject.transform.position.x, 230f, 0.0f);
             //musicLine.transform.position += temp;
-            foreach (GameObject note in allNotes) { 
+            foreach (GameObject note in allNotes)
+            {
                 note.SetActive(true);
                 note.transform.position += new Vector3(0.0f, 140f);
             }
@@ -133,7 +153,13 @@ public class GameManager : MonoBehaviour
     {
         if (missedNotes == 3)
         {
-
+            sceneManager.GameOverScene();
         }
+    }
+
+    private IEnumerator Delay()
+    {
+        //1.5 second buffer
+        yield return new WaitForSeconds(1.5f);
     }
 }

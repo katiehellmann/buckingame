@@ -8,20 +8,35 @@ public class BullMovement : MonoBehaviour
     [SerializeField] GameObject personOn, personOff;
 
     Vector3 defaultPos;
+
+    bool hasStarted;
     // Start is called before the first frame update
     void Start()
     {
         defaultPos = transform.position;
+        transform.SetPositionAndRotation(defaultPos, Quaternion.identity);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.hasRider == true) {
-            Left();
-            Right();
-            Up();
-            Down();
+        if (!hasStarted)
+        {
+            if (Input.anyKeyDown)
+            {
+                hasStarted = true;
+            }
+        }
+        else
+        {
+            if (GameManager.instance.hasRider == true)
+            {
+                Left();
+                Right();
+                Up();
+                Down();
+            }
+            BuckOff();
         }
 
     }
@@ -74,6 +89,24 @@ public class BullMovement : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.S))
         {
             transform.position = defaultPos;
+        }
+
+    }
+
+    public void BuckOff()
+    {
+        if (GameManager.instance.hasRider == false)
+        {
+            transform.Rotate(Vector3.back * -40);
+            personOn.gameObject.SetActive(false);
+            personOff.gameObject.SetActive(true);
+            personOff.gameObject.transform.position += new Vector3(1f, -1f);
+            GameManager.instance.hasRider = true;
+            personOff.gameObject.transform.position -= new Vector3(1f, -1f);
+
+        }
+        else {
+            personOn.gameObject.SetActive(true);
         }
 
     }
