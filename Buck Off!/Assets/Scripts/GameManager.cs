@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour
             music.Play();
         }
         spawnMoreNotes();
+        GlobalManager.points = currentScore;
         GameOver();
     }
     //a note helper method
