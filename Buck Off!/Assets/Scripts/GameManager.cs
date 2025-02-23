@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int scorePerNote = 100;
     [SerializeField] int scorePerGoodNote = 125;
     [SerializeField] int scorePerPerfectNote = 150;
+    public int missedNotes;
 
 
 
@@ -24,6 +25,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI scoreTMP;
     [SerializeField] TextMeshProUGUI multiplierTMP;
+    [SerializeField] TextMeshProUGUI startTMP;
+    [SerializeField] GameObject startBG;
+
     [SerializeField] GameObject musicLine;
 
     [SerializeField] GameObject[] allNotes;
@@ -35,6 +39,7 @@ public class GameManager : MonoBehaviour
         currentScore = 0;
         currentMultiplier = 1;
         instance = this;
+        missedNotes = 0;
 
         allNotes = GameObject.FindGameObjectsWithTag("Note");
     }
@@ -47,6 +52,8 @@ public class GameManager : MonoBehaviour
         if (Input.anyKeyDown)
             {
                 startPlaying = true;
+                Destroy(startTMP);
+                Destroy(startBG);
                 _beatScroller.hasStarted = true;
 
 
@@ -55,7 +62,7 @@ public class GameManager : MonoBehaviour
         }
         spawnMoreNotes();
     }
-
+    //a note helper method
     public void NoteHit()
     {
         multiplerTracker++;
@@ -74,7 +81,7 @@ public class GameManager : MonoBehaviour
         multiplierTMP.text = "Multiplier: " + currentMultiplier + "x";
 
     }
-
+    //the following functions handle how accurate the user is at hitting notes
     public void NormalHit()
     {
         currentScore += scorePerNote;
@@ -91,14 +98,16 @@ public class GameManager : MonoBehaviour
         currentScore += scorePerPerfectNote;
         NoteHit();
     }
-
+    //a function to handle missed notes
     public void NoteMiss()
     {
+        missedNotes++;
         currentMultiplier = 1;
         multiplerTracker = 0;
         multiplierTMP.text = "Multiplier: " + currentMultiplier + "x";
     }
 
+    //a function that repositions the notes endlessly
     public void spawnMoreNotes()
     {
         bool isPlaying = false;
@@ -117,6 +126,14 @@ public class GameManager : MonoBehaviour
                 note.SetActive(true);
                 note.transform.position += new Vector3(0.0f, 140f);
             }
+        }
+    }
+
+    public void GameOver()
+    {
+        if (missedNotes == 3)
+        {
+
         }
     }
 }
