@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 /// <summary>
 /// Purpose: Controls the Note's behaviors, such as being able to be pressed and them they are destroyed
@@ -10,10 +11,16 @@ public class Note : MonoBehaviour
 {
     public bool canBePressed;
     [SerializeField] KeyCode keyToPress;
+    [SerializeField] GameObject hitEffect;
+    [SerializeField] GameObject goodEffect;
+    [SerializeField] GameObject perfectEffect;
+    [SerializeField] GameObject missEffect;
+
+    public bool hit;
     // Start is called before the first frame update
     void Start()
     {
-        
+        hit = false;
     }
 
     // Update is called once per frame
@@ -24,20 +31,26 @@ public class Note : MonoBehaviour
             if (canBePressed) { 
                 gameObject.SetActive(false);
                 // GameManager.instance.NoteHit();
-                if (Mathf.Abs(transform.position.y) > .25)
+                if (Mathf.Abs(transform.position.y) > .25f)
                 {
                     GameManager.instance.NormalHit();
+                    Instantiate(hitEffect, transform.position, hitEffect.transform.rotation);
                     Debug.Log("normal hit");
+                    hit = true;
                 }
-                else if (Mathf.Abs(transform.position.y) > .05)
+                else if (Mathf.Abs(transform.position.y) > .08f)
                 {
                     GameManager.instance.GoodHit();
+                    Instantiate(goodEffect, transform.position, goodEffect.transform.rotation);
                     Debug.Log("good hit");
+                    hit = true;
                 }
                 else
                 {
                     GameManager.instance.PerfectHit();
+                    Instantiate(perfectEffect, transform.position, perfectEffect.transform.rotation);
                     Debug.Log("perfect hit");
+                    hit = true;
                 }
             }
         }
@@ -56,8 +69,14 @@ public class Note : MonoBehaviour
     {
         if (other.tag == "Activator")
         {
-            canBePressed = false;
-            GameManager.instance.NoteMiss();
+            if (gameObject.activeSelf)
+            {
+                canBePressed = false;
+                Debug.Log("missed.");
+                GameManager.instance.NoteMiss();
+                Instantiate(missEffect, (transform.position), missEffect.transform.rotation);
+                gameObject.SetActive(false);
+            }
         }
     }
 }
