@@ -25,6 +25,13 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(levelOne);
     }
 
+    private IEnumerator LoadInstrucWithDelay()
+    {
+        //1.5 second buffer
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene(instructionsScreen);
+    }
+
     //open creds
     public void OpenCredits()
     {
@@ -53,7 +60,7 @@ public class MainMenu : MonoBehaviour
     // Open instructions scene
     public void OpenInstructions()
     {
-        SceneManager.LoadScene(instructionsScreen);
+        StartCoroutine(LoadInstrucWithDelay());
     }
     public void GameOverScene()
     {
