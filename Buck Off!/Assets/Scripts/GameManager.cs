@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public AudioSource music;
     public bool startPlaying;
     public BeatScroller _beatScroller;
-
+    public bool hasRider;
     public static GameManager instance;
     public int currentScore;
     [SerializeField] int scorePerNote = 100;
@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hasRider = true;
         currentScore = 0;
         currentMultiplier = 1;
         instance = this;
@@ -101,7 +102,7 @@ public class GameManager : MonoBehaviour
     public void spawnMoreNotes()
     {
         bool isPlaying = false;
-        Debug.Log(musicLine.gameObject.transform.position.x);
+        //Debug.Log(musicLine.gameObject.transform.position.x);
         foreach (GameObject note in allNotes) {
             if (note.activeSelf)
             {
@@ -109,11 +110,12 @@ public class GameManager : MonoBehaviour
             }
         }
         if (!isPlaying) {
-            Vector3 temp = new Vector3(musicLine.gameObject.transform.position.x, 230f, 0.0f);
-            musicLine.transform.position += temp;
+            Debug.Log("respawned notes");
+            //Vector3 temp = new Vector3(musicLine.gameObject.transform.position.x, 230f, 0.0f);
+            //musicLine.transform.position += temp;
             foreach (GameObject note in allNotes) { 
                 note.SetActive(true);
-                note.transform.position += new Vector3(0.0f, 136f);
+                note.transform.position += new Vector3(0.0f, 140f);
             }
         }
     }
