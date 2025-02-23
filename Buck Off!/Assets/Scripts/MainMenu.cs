@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
     public string levelOne;
     public GameObject creditsScreen;
     public string startScreen;
+    public string instructionsScreen;
 
     //delaaayyyyy
     public void StartGame()
@@ -43,5 +44,13 @@ public class MainMenu : MonoBehaviour
     public void StartingScene()
     {
         SceneManager.LoadScene(startScreen);
+    }
+
+
+    //instructions
+    // Open instructions scene
+    public void OpenInstructions()
+    {
+        SceneManager.LoadScene(instructionsScreen);
     }
 }

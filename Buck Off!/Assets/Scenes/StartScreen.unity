@@ -1557,6 +1557,7 @@ MonoBehaviour:
   levelOne: Gameplay
   creditsScreen: {fileID: 64200692}
   startScreen: StartScreen
+  instructionsScreen: InstructionsScene
 --- !u!1 &1048647889
 GameObject:
   m_ObjectHideFlags: 0
@@ -1727,7 +1728,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 999686882}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: OpenInstructions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
