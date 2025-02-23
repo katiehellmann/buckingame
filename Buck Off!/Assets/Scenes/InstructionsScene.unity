@@ -519,15 +519,15 @@ RectTransform:
   m_GameObject: {fileID: 188440046}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 775456981}
   m_Father: {fileID: 90061449}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 475, y: -516}
+  m_AnchoredPosition: {x: 370, y: -516}
   m_SizeDelta: {x: 203.91, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &342034416
@@ -672,12 +672,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     dialogueLines:
-    - line: 'Howdy Pardner! And Welcome to BUCK OFF! '
-    - line: Buck off is a rhythm based game that does xyz
-    - line: controlls are xyz
-    - line: to do this do this
-    - line: this one thing will do this other thing
-    - line: When you're ready just press "PLAY" and remeber . . . Buck em!
+    - line: Howdy Pardner! Welcome to *BUCK OFF* the best mechanical-bull-having
+        dive bar you've ever been to! Have you ever operated a bull before?
+    - line: Well, of course you have! Just like the game the youngin's call Friday
+        Night Funkin, usin' this thang's just like playin' a rhythm game.
+    - line: 'Use WASD to match the beat of the notes! There''s really not much else
+        to it! '
+    - line: Yer gonna be able to see your score and multiplier streak on the right
+        half of the screen when you get started.
+    - line: Alrighty buckaroo, when you're ready to put 'er in gear,  just press
+        "SKIP" to start. Try not to get too rowdy out there!
 --- !u!1 &462130661
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,6 +872,7 @@ MonoBehaviour:
   creditsScreen: {fileID: 551247371}
   startScreen: StartScreen
   instructionsScreen: InstructionsScene
+  failScreen: 
 --- !u!1 &646255685
 GameObject:
   m_ObjectHideFlags: 0
@@ -1155,7 +1160,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -8, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &775456982
@@ -1187,8 +1192,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4282349297
+  m_fontColor: {r: 0.9450981, g: 0.46274513, b: 0.24705884, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

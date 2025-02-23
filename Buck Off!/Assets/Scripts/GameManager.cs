@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 public class GameManager : MonoBehaviour
 {
     public AudioSource music;
+    public AudioClip musicClip2;
     public bool startPlaying;
     public BullMovement bull;
     public bool hasRider;
@@ -32,6 +33,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject startBG;
 
     [SerializeField] GameObject musicLine;
+    [SerializeField] GameObject musicLine2;
+
     [SerializeField] BeatScroller _beatScroller;
 
 
@@ -40,6 +43,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+       // StartCoroutine(Delay(music.clip.length));
+
         hasRider = false;
         currentScore = 0;
         currentMultiplier = 1;
@@ -47,6 +52,7 @@ public class GameManager : MonoBehaviour
         missedNotes = 0;
 
         allNotes = GameObject.FindGameObjectsWithTag("Note");
+        StartCoroutine(Delay(music.clip.length));
     }
 
     // Update is called once per frame
@@ -65,14 +71,22 @@ public class GameManager : MonoBehaviour
 
 
                 music.Play();
+
+                // Wait for the audio to have finished
+                //StartCoroutine(Delay(music.clip.length));
+
+
+                // Assign the other clip and play it
+                music.clip = musicClip2;
+                music.Play();
             }
         }
 
         if (!music.isPlaying && hasRider)
         {
             //change the gaurds
-            hasRider = false;
-            Delay();
+            //hasRider = false;
+            Delay(0);
             music.Play();
         }
         spawnMoreNotes();
@@ -142,11 +156,13 @@ public class GameManager : MonoBehaviour
             Debug.Log("respawned notes");
             //Vector3 temp = new Vector3(musicLine.gameObject.transform.position.x, 230f, 0.0f);
             //musicLine.transform.position += temp;
-            foreach (GameObject note in allNotes)
-            {
-                note.SetActive(true);
-                note.transform.position += new Vector3(0.0f, 140f);
-            }
+            musicLine2.SetActive(true);
+            music.clip = musicClip2;
+            _beatScroller.beatTempo = 176;
+            //force them to gameover
+
+            sceneManager.GameOverScene();
+
         }
     }
 
@@ -158,9 +174,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private IEnumerator Delay()
+    private IEnumerator Delay(float num)
     {
+        if (num == 0)
+        {
+            num = 1.5f;
+        }
         //1.5 second buffer
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(num);
     }
 }

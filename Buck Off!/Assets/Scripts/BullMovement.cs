@@ -36,7 +36,7 @@ public class BullMovement : MonoBehaviour
                 Up();
                 Down();
             }
-            BuckOff();
+            //BuckOff();
         }
 
     }
@@ -93,21 +93,4 @@ public class BullMovement : MonoBehaviour
 
     }
 
-    public void BuckOff()
-    {
-        if (GameManager.instance.hasRider == false)
-        {
-            transform.Rotate(Vector3.back * -40);
-            personOn.gameObject.SetActive(false);
-            personOff.gameObject.SetActive(true);
-            personOff.gameObject.transform.position += new Vector3(1f, -1f);
-            GameManager.instance.hasRider = true;
-            personOff.gameObject.transform.position -= new Vector3(1f, -1f);
-
-        }
-        else {
-            personOn.gameObject.SetActive(true);
-        }
-
-    }
 }
