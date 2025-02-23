@@ -377,6 +377,7 @@
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/MainMenu.cs"
 "Assets/Scripts/Note.cs"
+"Assets/Scripts/RandomSound.cs"
 -langversion:9.0
 /deterministic
 /optimize+
