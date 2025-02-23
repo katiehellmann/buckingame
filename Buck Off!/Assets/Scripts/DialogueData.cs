@@ -5,6 +5,10 @@ using UnityEngine;
 [System.Serializable]
 public class DialogueLine
 {
+
+    //https://www.youtube.com/watch?v=DOP_G5bsySA
+    //Script to hold dialogue line and dialogue lines
+
     [TextArea(3, 10)]
     public string line;
 }

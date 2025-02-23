@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    //script to switch between scenes 
+
+
     public string levelOne;
     public GameObject creditsScreen;
     public string startScreen;

@@ -6,6 +6,10 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
+    //https://www.youtube.com/watch?v=DOP_G5bsySA
+    //script that will manage the buttons, text, and parse all the lines and text onto the screen for dialogue reading
+
+
     public static DialogueManager Instance;
 
     public TextMeshProUGUI dialogueText;
