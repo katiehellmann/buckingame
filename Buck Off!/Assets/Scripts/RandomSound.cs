@@ -10,30 +10,24 @@ public class RandomSound : MonoBehaviour
     public AudioClip sound2;
     private AudioSource audioSource;
 
-    void Start()
+    void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
-        {
-            Debug.LogError("eeerrrrrrmmmmmmm no sound.....help");
-        }
-
+        audioSource = gameObject.AddComponent<AudioSource>(); // Auto-adds AudioSource
         Button button = GetComponent<Button>();
+
         if (button != null)
         {
-            //random number from 1-10
-            button.onClick.AddListener(() => PlayRandomSound(Random.Range(1, 11)));
+            button.onClick.AddListener(PlayRandomSound);
         }
     }
 
-    public void PlayRandomSound(int randomNumber)
+    void PlayRandomSound()
     {
-        if (audioSource != null && (sound1 != null || sound2 != null))
+        int randomNumber = Random.Range(1, 11); // 1-10
+
+        if (sound1 != null && sound2 != null)
         {
-            if (randomNumber <= 5)
-                audioSource.PlayOneShot(sound1);
-            else
-                audioSource.PlayOneShot(sound2);
+            audioSource.PlayOneShot(randomNumber <= 5 ? sound1 : sound2);
         }
     }
 }
