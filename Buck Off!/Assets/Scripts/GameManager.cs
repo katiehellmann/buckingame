@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,12 +24,18 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI scoreTMP;
     [SerializeField] TextMeshProUGUI multiplierTMP;
+    [SerializeField] GameObject musicLine;
+
+    [SerializeField] GameObject[] allNotes;
+
     // Start is called before the first frame update
     void Start()
     {
         currentScore = 0;
         currentMultiplier = 1;
         instance = this;
+
+        allNotes = GameObject.FindGameObjectsWithTag("Note");
     }
 
     // Update is called once per frame
@@ -45,6 +52,7 @@ public class GameManager : MonoBehaviour
                 music.Play();
             }
         }
+        spawnMoreNotes();
     }
 
     public void NoteHit()
@@ -88,6 +96,25 @@ public class GameManager : MonoBehaviour
         currentMultiplier = 1;
         multiplerTracker = 0;
         multiplierTMP.text = "Multiplier: " + currentMultiplier + "x";
+    }
 
+    public void spawnMoreNotes()
+    {
+        bool isPlaying = false;
+        Debug.Log(musicLine.gameObject.transform.position.x);
+        foreach (GameObject note in allNotes) {
+            if (note.activeSelf)
+            {
+                isPlaying = true;
+            }
+        }
+        if (!isPlaying) {
+            Vector3 temp = new Vector3(musicLine.gameObject.transform.position.x, 230f, 0.0f);
+            musicLine.transform.position += temp;
+            foreach (GameObject note in allNotes) { 
+                note.SetActive(true);
+                note.transform.position += new Vector3(0.0f, 136f);
+            }
+        }
     }
 }

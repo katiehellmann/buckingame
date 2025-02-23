@@ -28,7 +28,7 @@ public class BeatScroller : MonoBehaviour
         }
         else
         {
-            transform.position -= new Vector3(0.0f, beatTempo * Time.deltaTime, 0.0f);
+            gameObject.transform.position -= new Vector3(0.0f, beatTempo * Time.deltaTime, 0.0f);
         }
         
     }
